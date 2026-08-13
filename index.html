@@ -6,7 +6,6 @@
   <title>Partner Dashboard — DEUNA</title>
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="Partner Dashboard">
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#FF5500">
   <style>
     * { box-sizing:border-box; margin:0; padding:0; }
@@ -22,12 +21,23 @@
     }
     .wrap p { font-size:13px; opacity:.85; margin-top:14px; }
   </style>
+  <script>
+    // Só a PRIMEIRA visita fica parada aqui (necessário pra "Adicionar à Tela de
+    // Início" capturar o apple-touch-icon certo). A partir da 2ª visita, já pula
+    // direto pro dashboard sem exigir toque.
+    var TARGET = "https://dev-portal.deuna.io/artifacts/view?name=Partnership-Dashboard&kind=folder";
+    if (localStorage.getItem('dd_visited')) {
+      location.replace(TARGET);
+    } else {
+      localStorage.setItem('dd_visited', '1');
+    }
+  </script>
 </head>
 <body>
   <div class="wrap">
     <img src="apple-touch-icon.png" alt="DEUNA">
     <div><a href="https://dev-portal.deuna.io/artifacts/view?name=Partnership-Dashboard&kind=folder">Abrir Dashboard</a></div>
-    <p>Toque no ícone acima. Se salvar essa tela na Tela de Início,<br>o atalho fica com a logo da DEUNA.</p>
+    <p>Essa tela só aparece uma vez.<br>Da próxima vez o atalho já abre direto.</p>
   </div>
 </body>
 </html>
